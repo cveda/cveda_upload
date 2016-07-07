@@ -1,0 +1,23 @@
+Source: cubicweb-cveda-upload
+Section: web
+Priority: optional
+Maintainer: CEA <imagen.database@cea.fr>
+Build-Depends:
+ debhelper (>= 7),
+ python (>= 2.6.5),
+Standards-Version: 3.9.3
+X-Python-Version: >= 2.6
+
+Package: cubicweb-cveda-upload
+Architecture: all
+Depends:
+ cubicweb-common (>= 3.20.9),
+ ${python:Depends},
+ ${misc:Depends},
+Description: c-VEDA upload portal
+ CubicWeb is a semantic web application framework.
+ .
+ c-VEDA upload portal
+ .
+ This package will install all the components you need to run the
+ cubicweb-cveda-upload application (cube :)..
