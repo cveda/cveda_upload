@@ -11,9 +11,9 @@ license = 'LGPL'
 author = 'CEA'
 author_email = 'imagen.database@cea.fr'
 description = 'c-VEDA upload portal'
-web = 'http://www.cubicweb.org/project/%s' % distname
+web = 'https://github.com/cveda/cveda_upload'
 
-__depends__ =  {'cubicweb': '>= 3.20.9'}
+__depends__ = {'cubicweb': '>= 3.20.9'}
 __recommends__ = {}
 
 classifiers = [
@@ -29,6 +29,7 @@ from glob import glob
 
 THIS_CUBE_DIR = join('share', 'cubicweb', 'cubes', modname)
 
+
 def listdir(dirpath):
     return [join(dirpath, fname) for fname in _listdir(dirpath)
             if fname[0] != '.' and not fname.endswith('.pyc')
@@ -40,9 +41,9 @@ data_files = [
     [THIS_CUBE_DIR, [fname for fname in glob('*.py') if fname != 'setup.py']],
     ]
 # check for possible extended cube layout
-for dname in ('entities', 'views', 'sobjects', 'hooks', 'schema', 'data', 'wdoc', 'i18n', 'migration'):
+for dname in ('entities', 'views', 'sobjects', 'hooks', 'schema', 'data',
+              'wdoc', 'i18n', 'migration'):
     if isdir(dname):
         data_files.append([join(THIS_CUBE_DIR, dname), listdir(dname)])
 # Note: here, you'll need to add subdirectories if you want
 # them to be included in the debian package
-
