@@ -7,7 +7,7 @@ for further processing by the databank team.
 
 The upload portal is part of `c-VEDA databank operations`_ but the source code
 lives in its own repository. It is a Python module, based on PIWS_ / rql_upload_,
-which in turn are based on CubicWeb_.
+which in turn are based on the CubicWeb_ semantic web framework.
 
 .. _`c-VEDA databank operations`: https://github.com/cveda/cveda_databank
 .. _PIWS: https://github.com/neurospin/piws
