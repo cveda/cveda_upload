@@ -81,7 +81,7 @@
 				"style": "width:100%; float: "
 			},
 			{
-				"name": "dti",
+				"name": "dwi",
 				"type": "StringField",
 				"choices": ["Good","Doubtful","Bad","Missing"],
 				"sort":"False",
@@ -89,14 +89,14 @@
 				"label": "DTI"
 			},
 			{
-				"name": "dti_desc",
+				"name": "dwi_desc",
 				"type": "StringField",
 				"value": "",
 				"label": " ",
 				"max_length" : 255
 			},
 			{
-				"name": "dti_rev",
+				"name": "dwi_rev",
 				"type": "StringField",
 				"choices": ["Good","Doubtful","Bad","Missing"],
 				"sort":"False",
@@ -104,7 +104,7 @@
 				"label": "DTI reversed"
 			},
 			{
-				"name": "dti_rev_desc",
+				"name": "dwi_rev_desc",
 				"type": "StringField",
 				"value": "",
 				"label": " ",
