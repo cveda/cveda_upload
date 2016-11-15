@@ -35,7 +35,7 @@
 				"label": "Acquisition Date"
 			},
 			{
-				"name": "t1w",
+				"name": "T1w",
 				"type": "StringField",
 				"choices": ["Good","Doubtful","Bad","Missing"],
 				"sort":"False",
@@ -43,7 +43,7 @@
 				"label": "3D T1 weighted"
 			},
 			{
-				"name": "t1w_desc",
+				"name": "T1w_desc",
 				"type": "StringField",
 				"value": "",
 				"label": " ",
@@ -126,7 +126,7 @@
 				"max_length" : 255
 			},
 			{
-				"name": "t2w",
+				"name": "T2w",
 				"type": "StringField",
 				"choices": ["Good","Doubtful","Bad","Missing"],
 				"sort":"False",
@@ -134,7 +134,7 @@
 				"label": "2D T2 wheighted"
 			},
 			{
-				"name": "t2w_desc",
+				"name": "T2w_desc",
 				"type": "StringField",
 				"value": "",
 				"label": " ",
