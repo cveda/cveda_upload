@@ -34,7 +34,7 @@ from cubes.rql_upload.entities import EntityCWUpload
 
 
 class EntityCWUpload(EntityCWUpload):
-    """ Overrired the 'CWUpload' entity associated functions. """
+    """ Override the 'CWUpload' entity associated functions. """
 
     def dc_title(self):
         """ Method that defines the upload entity title. """
