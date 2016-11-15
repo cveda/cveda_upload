@@ -1,6 +1,6 @@
-# -*- coding: utf-8 -*-
+#! /usr/bin/env python
 
-# Copyright (c) 2014-2016 CEA
+# Copyright (c) 2016 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -28,28 +28,16 @@
 # The fact that you are presently reading this means that you have had
 # knowledge of the CeCILL license and that you accept its terms.
 
-"""cubicweb-cveda-upload specific hooks and operations"""
 
-from cubicweb.server.hook import Hook
-
-
-class ServerStartupHook(Hook):
-    """
-        Update repository cache with groups from indexation to ease LDAP
-        synchronisation
-    """
-    __regid__ = 'cveda.update_cache_hook'
-    events = ('server_startup', 'server_maintenance')
-
-    def __call__(self):
-        # get session
-
-        # update repository cache
-        with self.repo.internal_cnx() as cnx:
-            rset = cnx.execute("Any X WHERE X is CWGroup")
-            for egroup in rset.entities():
-                if egroup.name in ["guests", "managers", "users", "owners"]:
-                    continue
-                self.repo._extid_cache[
-                    'cn={0},ou=Groups,dc=nimhans,dc=ac,dc=in'.format(
-                        egroup.name)] = egroup.eid
+options = (
+    (
+        "cati_workflow_directory",
+        {
+            "type": "string",
+            "default": "",
+            "help": ("base directory in which the files"
+                     " to manage cati workflow uploaded file validation."),
+            "group": "cveda_upload", "level": 0,
+        }
+    ),
+)

@@ -7,13 +7,17 @@ distname = 'cubicweb-cveda-upload'
 numversion = (0, 1, 0)
 version = '.'.join(str(num) for num in numversion)
 
-license = 'LGPL'
+license = 'CeCILL'
 author = 'CEA'
-author_email = 'imagen.database@cea.fr'
+author_email = 'imagendatabase@cea.fr'
 description = 'c-VEDA upload portal'
 web = 'https://github.com/cveda/cveda_upload'
 
-__depends__ = {'cubicweb': '>= 3.20.9'}
+__depends__ = {
+    'cubicweb': '>= 3.20.9',
+    'cubicweb-piws': None,
+    'cubicweb-trustedauth': None,
+    }
 __recommends__ = {}
 
 classifiers = [

@@ -1,0 +1,147 @@
+{
+	"MRI": {
+		"Fields": [
+			{
+				"name": "centre",
+				"type": "StringField",
+				"value": "",
+				"label": "Acquisition Centre",
+				"required": "True",
+				"choices": [""],
+				"rql": "DISTINCT Any C WHERE X is CWGroup, X cwuri ILIKE '%ou=Centres%', U login '{}', U in_group X, X name C:choices"
+			},
+			{
+				"name": "sid",
+				"type": "StringField",
+				"value": "",
+				"label": "Subject ID (PSC1)",
+				"max_length" : 20,
+				"style": "width:150px",
+				"required": "True"
+			},
+			{
+				"name": "time_point",
+				"type": "StringField",
+				"choices": ["BL"],
+				"sort":"False",
+				"value": "BL",
+				"label": "Time Point (TP)",
+				"required": "True"
+			},
+			{
+				"name": "acquisition_date",
+				"type": "DateField",
+				"required": "True",
+				"label": "Acquisition Date"
+			},
+			{
+				"name": "t1w",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "3D T1 weighted"
+			},
+			{
+				"name": "t1w_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
+				"name": "rest",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "Resting state fMRI"
+			},
+			{
+				"name": "rest_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
+				"name": "B0_map",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "B0 mapping"
+			},
+			{
+				"name": "B0_map_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255,
+				"style": "width:100%; float: "
+			},
+			{
+				"name": "dti",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "DTI"
+			},
+			{
+				"name": "dti_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
+				"name": "dti_rev",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "DTI reversed"
+			},
+			{
+				"name": "dti_rev_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
+				"name": "FLAIR",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "2D fast FLAIR"
+			},
+			{
+				"name": "FLAIR_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
+				"name": "t2w",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Good",
+				"label": "2D T2 wheighted"
+			},
+			{
+				"name": "t2w_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			}
+		],
+		"SynchroneCheck": "cubes.cveda_upload.checks.synchrone_check_rmi",
+		"ASynchroneCheck": "cubes.cveda_upload.checks.asynchrone_check_rmi"
+	}
+}

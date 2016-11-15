@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2014-2016 CEA
+# Copyright (c) 2016 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -28,28 +28,24 @@
 # The fact that you are presently reading this means that you have had
 # knowledge of the CeCILL license and that you accept its terms.
 
-"""cubicweb-cveda-upload specific hooks and operations"""
-
-from cubicweb.server.hook import Hook
+from cubes.piws.views import secondary
 
 
-class ServerStartupHook(Hook):
+class OutOfContextCWUploadView(secondary.OutOfContextCWUploadView):
+    """ CWUpload secondary rendering.
     """
-        Update repository cache with groups from indexation to ease LDAP
-        synchronisation
-    """
-    __regid__ = 'cveda.update_cache_hook'
-    events = ('server_startup', 'server_maintenance')
 
-    def __call__(self):
-        # get session
+    def entity_description(self, entity):
+        """ Generate a dictionary with the CWUpload description.
+        """
+        desc = {}
+        desc["Form"] = entity.form_name
+        desc["Status"] = entity.status
+        desc["Subject"] = entity.get_field_value('sid')
+        desc["Time Point"] = entity.get_field_value('time_point')
+        return desc
 
-        # update repository cache
-        with self.repo.internal_cnx() as cnx:
-            rset = cnx.execute("Any X WHERE X is CWGroup")
-            for egroup in rset.entities():
-                if egroup.name in ["guests", "managers", "users", "owners"]:
-                    continue
-                self.repo._extid_cache[
-                    'cn={0},ou=Groups,dc=nimhans,dc=ac,dc=in'.format(
-                        egroup.name)] = egroup.eid
+
+def registration_callback(vreg):
+    vreg.register_and_replace(OutOfContextCWUploadView,
+                              secondary.OutOfContextCWUploadView)

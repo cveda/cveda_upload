@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2014-2016 CEA
+# Copyright (c) 2016 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -28,28 +28,24 @@
 # The fact that you are presently reading this means that you have had
 # knowledge of the CeCILL license and that you accept its terms.
 
-"""cubicweb-cveda-upload specific hooks and operations"""
+# CW imports
+from cubicweb.web.views.startup import IndexView
 
-from cubicweb.server.hook import Hook
+# Cubes import
+from cubes.piws.views.startup import PIWSIndexView
 
 
-class ServerStartupHook(Hook):
+class cvedaIndexView(IndexView):
+    """ Class that defines the piws index view.
     """
-        Update repository cache with groups from indexation to ease LDAP
-        synchronisation
-    """
-    __regid__ = 'cveda.update_cache_hook'
-    events = ('server_startup', 'server_maintenance')
 
-    def __call__(self):
-        # get session
+    def call(self, **kwargs):
+        """ Create the 'index' like page of our site.
+        """
+        # Get the card that contains some text description about this site
+        self.w(u"<h2>Welcome to the c-VEDA neuroimaging upload portal<h2>")
+        rset = self._cw.execute("Any X WHERE X is Card, X title 'index'")
 
-        # update repository cache
-        with self.repo.internal_cnx() as cnx:
-            rset = cnx.execute("Any X WHERE X is CWGroup")
-            for egroup in rset.entities():
-                if egroup.name in ["guests", "managers", "users", "owners"]:
-                    continue
-                self.repo._extid_cache[
-                    'cn={0},ou=Groups,dc=nimhans,dc=ac,dc=in'.format(
-                        egroup.name)] = egroup.eid
+
+def registration_callback(vreg):
+    vreg.register_and_replace(cvedaIndexView, PIWSIndexView)
