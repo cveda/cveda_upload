@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2016 CEA
+# Copyright (c) 2016-2017 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -30,7 +30,6 @@
 
 import hashlib
 import os
-import os.path
 import re
 import shutil
 import traceback
@@ -38,6 +37,8 @@ import traceback
 from cubes.rql_upload.tools import get_or_create_logger
 from cveda_databank.sanity import imaging
 from . import cati
+
+VALIDATED_ADD_PATH_AFTER_TP = os.path.join('RAW', 'PSC1')
 
 SID_ERROR_MESSAGE = ("<dl><dt>The subject ID is malformed.</dt>"
                      "<dd>12 decimal digits required.</dd></dl>")
@@ -57,7 +58,7 @@ def get_message_error(errors, filename, pattern, filepath):
     """ Generate a message error from error list regarding an uploaded file.
 
 
-    Pameters:
+    Parameters:
         errors: error list
         filename: file name provide by user during upload
         pattern: pattern expected for file name
@@ -84,13 +85,13 @@ def get_message_error(errors, filename, pattern, filepath):
 
 
 def is_PSC1(value):
-    """ Cheks if  value is well formated (12 decimal digits)
+    """ Checks if value is well-formatted (12 decimal digits)
 
-    Pameters:
-        value: a value reprsenting a PSC1
+    Parameters:
+        value: PSC1 code
 
     Return:
-        Return True value match with the pattern, False otherwise
+        Return True is matches the pattern, False otherwise.
     """
     if re.match("^\d{12}$", value) is None:
         return False
@@ -102,10 +103,10 @@ def is_aldready_uploaded(connexion, posted, formname, uid):
     """ Checks if an equivalent upload is already done.
         To be equivalent an upload must have:
             a status different than 'Rejected' and
-            a uploadfield with equal SID and
-            a uploadfield with equal TIME_POINT
+            an uploadfield with equal SID and
+            an uploadfield with equal TIME_POINT
 
-    Pameters:
+    Parameters:
         connexion: connexion use to query
         posted: dictionnary of form posted fields
         formname: form name
@@ -139,7 +140,7 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
         Then call methods of cveda_databank.sanity.imaging
         than checks name file and content
 
-    Pameters:
+    Parameters:
         connexion: connexion use to query
         posted: dictionnary of form posted fields
         upload: CWUpload entity
@@ -156,7 +157,7 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
     if is_aldready_uploaded(connexion, posted, upload.form_name, upload.eid):
         message += UPLOAD_ALREADY_EXISTS
 
-    #dimitri check
+    # Dimitri's sanity check
     sid = posted['sid']
     tid = posted['time_point']
     date = posted['acquisition_date']
@@ -225,12 +226,12 @@ def asynchrone_check_rmi(repository):
                                response[1], entity.eid))
                 else:
                     from_file = entity.upload_files[0].get_file_path()
-                    to_file = u'{0}/{1}/{2}/{3}'.format(
-                        validated_dir, tp, centre, sid)
+                    to_file = os.path.join(validated_dir,
+                                           tp, VALIDATED_ADD_PATH_AFTER_TP,
+                                           centre, sid)
                     if not os.path.exists(to_file):
                         os.makedirs(to_file)
-                    to_file = to_file + "/{}".format(
-                        entity.upload_files[0].data_name)
+                    to_file = os.path.join(to_file, entity.upload_files[0].data_name)
                     shutil.copy2(from_file, to_file)
                     sha1 = unicode(
                         hashlib.sha1(open(to_file, 'rb').read()).hexdigest())
