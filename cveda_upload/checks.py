@@ -76,8 +76,8 @@ def get_message_error(errors, filename, pattern, filepath):
                 message += u' [{}]'.format(err.path)
             if err.sample:
                 sample = repr(err.sample)
-                if len(sample) > err._SAMPLE_LEN:
-                    sample = sample[:err._SAMPLE_LEN] + '...'
+                if len(sample) > 40:
+                    sample = sample[:40] + '...'
                 message += u' [{}]'.format(sample)
             message += u'<dd>'
         message += u'</dl>'
