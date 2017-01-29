@@ -161,7 +161,6 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
     sid = posted['sid']
     tid = posted['time_point']
     date = posted['acquisition_date']
-    psc1 = True
     errors = None
     filepath = files[0].get_file_path()
     psc1, errors = imaging.check_zip_name(files[0].data_name, tid, sid)
