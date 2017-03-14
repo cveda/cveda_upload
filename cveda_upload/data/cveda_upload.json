@@ -139,6 +139,12 @@
 				"value": "",
 				"label": " ",
 				"max_length" : 255
+			},
+			{
+				"name": "file",
+				"type": "FileField",
+				"required": "True",
+				"label": "Images file (<PSC1>.zip)"
 			}
 		],
 		"SynchroneCheck": "cubes.cveda_upload.checks.synchrone_check_rmi",
