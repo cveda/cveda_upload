@@ -38,20 +38,18 @@ from cubes.rql_upload.tools import get_or_create_logger
 from cveda_databank.sanity import imaging
 from . import cati
 
-VALIDATED_ADD_PATH_AFTER_TP = os.path.join('RAW', 'PSC1')
-
 SID_ERROR_MESSAGE = ("<dl><dt>The subject ID is malformed.</dt>"
                      "<dd>12 decimal digits required.</dd></dl>")
 
 UPLOAD_ALREADY_EXISTS = ("<dl><dt>A similar upload already exists.</dt>"
-                         "<dd>Same subject ID and time point "
-                         " and not rejected upload.</dd>"
+                         "<dd>Same subject ID and time point,"
+                         " and upload not rejected.</dd>"
                          "<dd>Please contact an administrator if you want"
                          " to force the upload.</dd></dl>")
 
-SYSTEM_ERROR_RAISED = ("<dl><dt>A system error raised.<dt>"
-                       " Please send the following message"
-                       " to an administrator.</dd></dl>")
+SYSTEM_ERROR_RAISED = ("<dl><dt>System error</dt>"
+                       "<dd>Please send the following message"
+                       " to cveda.databank@cea.fr.</dd></dl>")
 
 
 def get_message_error(errors, filename, pattern, filepath):
@@ -79,7 +77,7 @@ def get_message_error(errors, filename, pattern, filepath):
                 if len(sample) > 40:
                     sample = sample[:40] + '...'
                 message += u' [{}]'.format(sample)
-            message += u'<dd>'
+            message += u'</dd>'
         message += u'</dl>'
     return message.replace(os.path.basename(filepath), filename)
 
@@ -88,10 +86,10 @@ def is_PSC1(value):
     """ Checks if value is well-formatted (12 decimal digits)
 
     Parameters:
-        value: PSC1 code
+        value: PSC1 code.
 
     Return:
-        Return True is matches the pattern, False otherwise.
+        Return True if value matches the pattern, False otherwise.
     """
     if re.match("^\d{12}$", value) is None:
         return False
@@ -151,16 +149,19 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
     """
 
     message = ''
+
+    sid = posted['sid']
+    tid = posted['time_point']
+    date = posted['acquisition_date']
+
     # checks
-    if not is_PSC1(posted['sid']):
+    if not is_PSC1(sid):
         message += SID_ERROR_MESSAGE
     if is_aldready_uploaded(connexion, posted, upload.form_name, upload.eid):
         message += UPLOAD_ALREADY_EXISTS
 
     # Dimitri's sanity check
-    sid = posted['sid']
-    tid = posted['time_point']
-    date = posted['acquisition_date']
+    psc1 = True
     errors = None
     filepath = files[0].get_file_path()
     psc1, errors = imaging.check_zip_name(files[0].data_name, tid, sid)
@@ -186,7 +187,7 @@ def asynchrone_check_rmi(repository):
         If there is a response then define status and error message to
         CWUpload following response content
 
-    Pameters:
+    Parameters:
         upload: A cubicweb repository object
     """
 
@@ -226,8 +227,8 @@ def asynchrone_check_rmi(repository):
                 else:
                     from_file = entity.upload_files[0].get_file_path()
                     to_file = os.path.join(validated_dir,
-                                           tp, VALIDATED_ADD_PATH_AFTER_TP,
-                                           centre, sid)
+                                           tp, 'RAW', 'PSC1',
+                                           centre)
                     if not os.path.exists(to_file):
                         os.makedirs(to_file)
                     to_file = os.path.join(to_file, entity.upload_files[0].data_name)
