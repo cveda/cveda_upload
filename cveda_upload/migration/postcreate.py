@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2014-2016 CEA
+# Copyright (c) 2014-2017 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -35,7 +35,7 @@ You could setup site properties or a workflow here for example.
 """
 
 # Example of site property change
-set_property('ui.site-title', "c-VEDA MRI upload")
+set_property('ui.site-title', "")
 
 import json
 
