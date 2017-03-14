@@ -46,7 +46,7 @@ with open(_LDAP_CONFIGURATION_FILE) as configuration_file:
     configuration = json.load(configuration_file)
 
     _LDAP_CONFIGURATION_DETAILS = {
-        'synchronization-interval': u'30min',
+        'synchronization-interval': u'2min',
         'data-cnx-dn': configuration['data-cnx-dn'],
         'data-cnx-password': configuration['data-cnx-password'],
         'user-base-dn': u'ou=People,dc=nimhans,dc=ac,dc=in',
