@@ -176,11 +176,11 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
     psc1, errors = imaging.check_zip_name(files[0].data_name, tid, sid)
     message += get_message_error(
         errors, files[0].data_name,
-        u'&lt;PSC1&gt;&lt;TP&gt;.zip', files[0].data_name)
+        u'&lt;PSC1&gt;.zip', files[0].data_name)
     psc1, errors = imaging.check_zip_content(filepath, sid, date, expected)
     message += get_message_error(
         errors, files[0].data_name,
-        u'&lt;PSC1&gt;&lt;TP&gt;.zip', filepath)
+        u'&lt;PSC1&gt;.zip', filepath)
 
     # return
     if message:
