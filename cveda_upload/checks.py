@@ -44,8 +44,8 @@ SID_ERROR_MESSAGE = ("<dl><dt>The subject ID is malformed.</dt>"
 UPLOAD_ALREADY_EXISTS = ("<dl><dt>A similar upload already exists.</dt>"
                          "<dd>Same subject ID and time point,"
                          " and upload not rejected.</dd>"
-                         "<dd>Please contact an administrator if you want"
-                         " to force the upload.</dd></dl>")
+                         "<dd>Please contact cveda.databank@cea.fr if you"
+                         " want to force the upload.</dd></dl>")
 
 SYSTEM_ERROR_RAISED = ("<dl><dt>System error</dt>"
                        "<dd>Please send the following message"
