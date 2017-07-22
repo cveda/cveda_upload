@@ -220,7 +220,7 @@ def set_done(entry):
             )
         value = sent.pop(entry)
         with open(get_sent_file_path(), 'w') as entryfile:
-            for key, value in sent.items():
+            for value in sent.values():
                 entryfile.write("{0}{1}{2}{3}".format(
                     entry, COL_SEP, value, LINE_SEP)
                 )

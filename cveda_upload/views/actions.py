@@ -45,6 +45,7 @@ class NIMHANSAction(Action):
     order = 3
     title = "NIMHANS"
 
+    @staticmethod
     def url(self):
         return "http://www.nimhans.ac.in/"
 
