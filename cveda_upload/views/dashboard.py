@@ -71,11 +71,11 @@ class DashboardView(View):
             tps.append(tp)
             status = entity.status
             centre = entity.get_field_value('centre')
-            if not sid in data.keys():
+            if sid not in data.keys():
                 data[sid] = {}
-            if not tp in data[sid].keys():
+            if tp not in data[sid].keys():
                 data[sid][tp] = {}
-            if not form in data[sid][tp].keys():
+            if form not in data[sid][tp].keys():
                 data[sid][tp][form] = []
             data[sid][tp][form].append(
                 (status, centre, entity.dc_creator(), entity.eid))

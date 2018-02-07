@@ -40,6 +40,7 @@ def listdir(dirpath):
             and not fname.endswith('~')
             and not isdir(join(dirpath, fname))]
 
+
 data_files = [
     # common files
     [THIS_CUBE_DIR, [fname for fname in glob('*.py') if fname != 'setup.py']],

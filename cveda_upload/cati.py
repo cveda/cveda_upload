@@ -64,7 +64,7 @@ def is_system_OK():
         if not os.access(path, os.W_OK):
             message += "{} has not write access.\n".format(path)
 
-   # log and return
+    # log and return
     if message != '':
         LOGGER.critical(message)
         return False
@@ -154,7 +154,7 @@ def get_response(entry):
         entry: Representing the file name
     """
     responses = read_response_file()
-    if not entry in responses.keys():
+    if entry not in responses.keys():
         return None
     else:
         return responses[entry].split(COL_SEP)
