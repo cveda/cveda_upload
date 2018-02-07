@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Copyright (c) 2016-2017 CEA
+# Copyright (c) 2016-2018 CEA
 #
 # This software is governed by the CeCILL license under French law and
 # abiding by the rules of distribution of free software. You can use,
@@ -173,11 +173,11 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
     psc1 = True
     errors = None
     filepath = files[0].get_file_path()
-    psc1, errors = imaging.check_zip_name(files[0].data_name, sid)
+    psc1, errors = imaging.check_zip_name(files[0].data_name, tid, sid)
     message += get_message_error(
         errors, files[0].data_name,
         u'&lt;PSC1&gt;.zip', files[0].data_name)
-    psc1, errors = imaging.check_zip_content(filepath, sid, date, expected)
+    psc1, errors = imaging.check_zip_content(filepath, tid, sid, date, expected)
     message += get_message_error(
         errors, files[0].data_name,
         u'&lt;PSC1&gt;.zip', filepath)

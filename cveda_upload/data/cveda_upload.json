@@ -22,7 +22,7 @@
 			{
 				"name": "time_point",
 				"type": "StringField",
-				"choices": ["BL"],
+				"choices": ["BL", "FU1"],
 				"sort":"False",
 				"value": "BL",
 				"label": "Time Point (TP)",
