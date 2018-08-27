@@ -159,6 +159,7 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
         'B0_map': posted['B0_map'],
         'dwi': posted['dwi'],
         'dwi_rev': posted['dwi_rev'],
+        'dwi_ap': posted['dwi_ap'],
         'FLAIR': posted['FLAIR'],
         'T2w': posted['T2w'],
     }

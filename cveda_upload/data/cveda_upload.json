@@ -111,6 +111,21 @@
 				"max_length" : 255
 			},
 			{
+				"name": "dwi_ap",
+				"type": "StringField",
+				"choices": ["Good","Doubtful","Bad","Missing"],
+				"sort":"False",
+				"value": "Missing",
+				"label": "DTI AP"
+			},
+			{
+				"name": "dwi_ap_desc",
+				"type": "StringField",
+				"value": "",
+				"label": " ",
+				"max_length" : 255
+			},
+			{
 				"name": "FLAIR",
 				"type": "StringField",
 				"choices": ["Good","Doubtful","Bad","Missing"],
