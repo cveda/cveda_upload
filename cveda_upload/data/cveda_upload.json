@@ -146,7 +146,7 @@
 				"choices": ["Good","Doubtful","Bad","Missing"],
 				"sort":"False",
 				"value": "Good",
-				"label": "2D T2 wheighted"
+				"label": "2D T2 weighted"
 			},
 			{
 				"name": "T2w_desc",
