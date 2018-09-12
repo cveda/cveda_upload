@@ -43,7 +43,7 @@ class cvedaIndexView(IndexView):
         """ Create the 'index' like page of our site.
         """
         # Get the card that contains some text description about this site
-        self.w(u"<h2>Welcome to the c-VEDA neuroimaging upload portal<h2>")
+        self.w(u'<h2>Welcome to the <a href="https://cveda.org">c-VEDA</a> neuroimaging upload portal<h2>')
         rset = self._cw.execute("Any X WHERE X is Card, X title 'index'")
 
 
