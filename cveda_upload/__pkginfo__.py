@@ -9,7 +9,7 @@ version = '.'.join(str(num) for num in numversion)
 
 license = 'CeCILL'
 author = 'CEA'
-author_email = 'imagendatabase@cea.fr'
+author_email = 'cveda.databank@cea.fr'
 description = 'c-VEDA upload portal'
 web = 'https://github.com/cveda/cveda_upload'
 
