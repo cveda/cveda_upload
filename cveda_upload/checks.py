@@ -171,8 +171,6 @@ def synchrone_check_rmi(connexion, posted, upload, files, fields):
         message += UPLOAD_ALREADY_EXISTS
 
     # Dimitri's sanity check
-    psc1 = True
-    errors = None
     filepath = files[0].get_file_path()
     psc1, errors = imaging.check_zip_name(files[0].data_name, tid, sid)
     message += get_message_error(
@@ -216,7 +214,6 @@ def asynchrone_check_rmi(repository):
         rset = cnx.execute(rql)
         for entity in rset.entities():
             args = {f.name: f.value for f in entity.upload_fields}
-            sid = args['sid']
             centre = args['centre']
             tp = args['time_point']
             try:
