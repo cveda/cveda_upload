@@ -52,8 +52,7 @@ class DashboardView(View):
         # query data
         rql = "Any UP ORDERBY UP DESC WHERE UP is CWUpload,"
         if 'user' in kwargs.keys():
-                rql += " UP created_by U, U login '{}'".format(
-                    kwargs['user'][0])
+            rql += " UP created_by U, U login '{}'".format(kwargs['user'][0])
         else:
             rql += (" UP upload_fields F, F name 'centre',"
                     " F value = '{}'".format(kwargs['centre'][0]))
@@ -114,7 +113,7 @@ class DashboardView(View):
                             status, centre, user, eid = data[sid][tp][form][0]
                             color = ''
                             if status == 'Quarantine':
-                                    color = '#336699'
+                                color = '#336699'
                             elif status == 'Rejected':
                                 color = '#800000'
                             elif status == 'Validated':

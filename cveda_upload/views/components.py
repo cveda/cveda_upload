@@ -55,8 +55,8 @@ class IMAGENCWUploadedBox(CWUploadBox):
         rql = rql.format(self._cw.user.login)
         rset = self._cw.execute(rql)
         for entity in rset.entities():
-#            if entity.name == 'managers' or entity.name == 'users':
-#                continue
+            #~ if entity.name == 'managers' or entity.name == 'users':
+                #~ continue
             href = self._cw.build_url(
                 "view",
                 rql=("Any X ORDERBY X DESC WHERE X is CWUpload,"
