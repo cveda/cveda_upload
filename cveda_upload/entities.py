@@ -44,6 +44,6 @@ class EntityCWUpload(EntityCWUpload):
             self.get_field_value('sid'),
             self.get_field_value('time_point'),
             self.dc_creator(),
-            self.creation_date.strftime('%Y/%m/%d'),
+            self.creation_date.strftime('%Y-%m-%d'),
             self.creation_date.strftime('%H:%M:%S')
         )
